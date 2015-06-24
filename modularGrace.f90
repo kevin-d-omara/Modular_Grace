@@ -14,7 +14,7 @@ MODULE userInput
 	CHARACTER(LEN=100) :: filename, title, subtitle
 	CHARACTER(LEN=100) :: xlabel, ylabel
 	CHARACTER(LEN=1) :: choice
-	LOGICAL :: xTicks, yTicks, xNumbers, yNumbers, sameColor, fromFile, colorfromFile, anotherPoint
+	LOGICAL :: xTicks, yTicks, xNumbers, yNumbers, sameColor, anotherPoint
 END MODULE userInput
 
 
@@ -45,23 +45,6 @@ WRITE(*,*) ' Welcome to the xmgrace bar graph maker.'
 WRITE(*,*) '       Version 0 : June 23, 2015'
 WRITE(*,*) ''
 WRITE(*,*) ' * * * * * * * * * * * * * * * * * * * *'
-WRITE(*,*) ''
-WRITE(*,*) 'Manual entry? (Y/N/Help)'
-DO
-    READ(*,*) choice
-    IF ((choice == 'y').OR.(choice == 'Y')) THEN
-	    fromFile = .FALSE.
-        EXIT
-    ELSEIF ((choice == 'n').OR.(choice == 'N')) THEN
-	    fromFile = .TRUE.
-        EXIT
-    ELSE IF ((choice == 'h').OR.(choice == 'H')) THEN
-        CALL mainHelp
-		WRITE(*,*) 'Now, Manual entry? (Y/N/Help)'
-    ELSE
-	    WRITE(*,*) 'Y or N or H please.'
-    ENDIF
-END DO
 WRITE(*,*) ''
 
 RETURN
@@ -643,47 +626,6 @@ END DO
 
 RETURN
 END SUBROUTINE buildEnd
-
-
-
-! ###############################################################################################
-!
-! Gives information about what is required from a Data File.  Includes options of "Full Header" and "Color".
-!
-! ###############################################################################################
-SUBROUTINE mainHelp()
-    IMPLICIT NONE
-
-WRITE(*,*) 'The most basic data file must contain information of the format:'
-WRITE(*,*) '1 15.234'
-WRITE(*,*) '3 -22.51'
-WRITE(*,*) '7 37.973'
-WRITE(*,*) '... etc'
-WRITE(*,*) 'where the x-values are in the first column and the y-values are in the second colum.'
-WRITE(*,*) ''
-WRITE(*,*) 'Additional options include: Full Header and/or Color'
-WRITE(*,*) ''
-WRITE(*,*) '  *press enter to continue*'
-READ(*,*)
-WRITE(*,*) 'Full Header must contain the following information in this order (comments are in brackets [])'
-WRITE(*,*) '----------------------------------------------------------------------------------------------'
-WRITE(*,*) 'output_Filename.agr'
-WRITE(*,*) 'graph_Title'
-WRITE(*,*) 'graph_Subtitle'
-WRITE(*,*) '[range of x and y values to be displayed]'
-WRITE(*,*) 'x_minimum x_maximum'
-WRITE(*,*) 'y_minimum y_maximum'
-WRITE(*,*) 'Y_or_N [display x-axis tick marks? yes or no]'
-WRITE(*,*) '[if yes:]'
-WRITE(*,*) 'x_major_spacing x_minor_spacing'
-WRITE(*,*) 'Y_or_N [display y-axis tick marks? yes or no]'
-WRITE(*,*) '[if yes:]'
-WRITE(*,*) 'y_major_spacing y_minor_spacing'
-WRITE(*,*) 'Y_or_N [do you want all bars to be the same color?]'
-! To be continued
-
-RETURN
-END SUBROUTINE mainHelp
 
 
 

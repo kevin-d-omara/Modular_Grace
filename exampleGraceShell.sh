@@ -1,4 +1,4 @@
-./a.out << INPUT
+./modularGrace.x << INPUT
 y
 myfirstGrace.agr
 A first chance at success!
