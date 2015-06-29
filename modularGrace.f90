@@ -354,11 +354,19 @@ DO
 	WRITE(100,*) '@    stack world 0, 0, 0, 0'
 	WRITE(100,*) '@    znorm 1'
 	WRITE(100,*) '@    view 0.150000, 0.150000, 1.000000, 0.850000'
-	WRITE(100,'(A,A,A)') '@    title "', title, '"'
+	IF (dataPoint == 0) THEN
+		WRITE(100,'(A,A,A)') '@    title "', title, '"'
+	ELSE
+		WRITE(100,*) '@    title ""'
+	END IF
 	WRITE(100,*) '@    title font 0'
 	WRITE(100,*) '@    title size 1.500000'
 	WRITE(100,*) '@    title color 1'
-	WRITE(100,'(A,A,A)') '@    subtitle "', subtitle, '"'
+	IF (dataPoint == 0) THEN
+		WRITE(100,'(A,A,A)') '@    subtitle "', subtitle, '"'
+	ELSE
+		WRITE(100,*) '@    subtitle ""'
+	END IF
 	WRITE(100,*) '@    subtitle font 0'
 	WRITE(100,*) '@    subtitle size 1.000000'
 	WRITE(100,*) '@    subtitle color 1'
